@@ -15,7 +15,6 @@ jobs:
             apt-get -y update
             apt-get install -y curl wget git
             git clone https://github.com/Rantzur1992/python_example.git
-            cd python_example
       - run:
           name: Install Docker client
           command: |
@@ -37,6 +36,7 @@ jobs:
       - run:
           name: Start Docker Agent
           command: |
+            cd python_example && ls -a
             set -x
             docker-compose up
 
