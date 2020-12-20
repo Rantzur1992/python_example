@@ -1,4 +1,5 @@
 from src.testproject.sdk.drivers import webdriver
+from selenium.webdriver import ChromeOptions
 
 
 def simple_test():
