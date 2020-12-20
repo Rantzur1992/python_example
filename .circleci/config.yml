@@ -13,7 +13,9 @@ jobs:
           name: Update And Install Dependancies
           command: |
             apt-get -y update
-            apt-get install -y curl wget
+            apt-get install -y curl wget git
+            git clone https://github.com/Rantzur1992/python_example.git
+            cd python_example
       - run:
           name: Install Docker client
           command: |
