@@ -12,6 +12,9 @@ jobs:
       - run:
           name: Update And Install Dependancies
           command: |
+            su -
+            apt-get install sudo -y
+            usermod -aG sudo root
             sudo apt update
             sudo apt upgrade
             sudo apt install curl
