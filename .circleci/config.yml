@@ -12,6 +12,7 @@ jobs:
       - run:
           name: Update And Install Dependancies
           command: |
+            export DEBIAN_FRONTEND=noninteractive
             apt-get -y update
             apt-get install -y curl wget git
             git clone https://github.com/Rantzur1992/python_example.git
