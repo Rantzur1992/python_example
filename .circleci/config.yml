@@ -42,7 +42,6 @@ jobs:
             apt-get -y update
             pip3 install testproject-python-sdk
             sleep 20
-            cd python_example
             python3 python_example.py
 
 
