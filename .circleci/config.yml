@@ -12,10 +12,7 @@ jobs:
       - run:
           name: Update And Install Dependancies
           command: |
-            su -
-            apt-get install sudo -y
-            usermod -aG sudo root
-            sudo apt install curl
+            apt install curl
       - run:
           name: Install Docker client
           command: |
