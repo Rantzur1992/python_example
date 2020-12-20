@@ -19,7 +19,6 @@ jobs:
       - run:
           name: Install Docker client
           command: |
-            export DEBIAN_FRONTEND=noninteractive
             set -x
             VER="17.03.0-ce"
             curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
@@ -50,7 +49,6 @@ jobs:
       - run:
           name: Run Tests
           command: |
-            export TP_DEV_TOKEN=kJCeheoppFyo8uaZ17k0JQyBck1qLIf5ZrynbI6t7Fk1
             cd python_example
             python3 python_example.py
 
