@@ -32,19 +32,28 @@ jobs:
             curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
             mv ~/docker-compose /usr/local/bin/docker-compose
-            pwd
-            ls -a
           
       - run:
           name: Start Docker Agent
           command: |
             cd python_example && ls -a
             set -x
-            docker-compose up
+            docker-compose up -d
+      - run:
+          name: Install Python and SDK
+          command: |
+            apt install -y software-properties-common
+            add-apt-repository ppa:deadsnakes/ppa
+            apt-get -y update
+            apt install -y python3.8 python3-pip
+            pip3 install testproject-python-sdk
       - run:
           name: Run Tests
           command: |
+            export TP_DEV_TOKEN=kJCeheoppFyo8uaZ17k0JQyBck1qLIf5ZrynbI6t7Fk1
+            cd python_example
             python3 python_example.py
+
 
 
 workflows:
