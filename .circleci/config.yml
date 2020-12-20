@@ -38,8 +38,7 @@ jobs:
           command: |
             cd python_example && ls -a
             set -x
-            docker-compose up -d
-            apt-get -y update
+            docker-compose up
             pip3 install testproject-python-sdk
             sleep 20
             python3 python_example.py
