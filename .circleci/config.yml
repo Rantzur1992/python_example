@@ -7,9 +7,9 @@ jobs:
   build-compose:
     docker:
       - image: ubuntu
-  working_directory: testproject/
+    working_directory: /testproject
     steps:
-    - run:
+      - run:
           name: Install Docker client
           command: |
             set -x
