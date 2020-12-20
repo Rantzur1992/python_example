@@ -41,6 +41,10 @@ jobs:
             cd python_example && ls -a
             set -x
             docker-compose up
+      - run:
+          name: Run Tests
+          command: |
+            python3 python_example.py
 
 
 workflows:
