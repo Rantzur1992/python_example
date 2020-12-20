@@ -47,7 +47,7 @@ jobs:
       - run:
           name: Run Tests
           command: |
-            sleep 20
+            sleep -m 2
             cd python_example
             python3 python_example.py
 
