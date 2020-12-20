@@ -6,6 +6,7 @@ orbs:
 jobs:
   build-compose:
     executor: python/default
+    working_directory: Rantzur1992/python_example
     steps:
       - run:
           name: Install Docker Compose
