@@ -1,0 +1,29 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+jobs:
+  build-compose:
+    executor: python/default
+    steps:
+      - run:
+           name: Install Docker Compose
+           command: |
+            curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+  start-agent:
+    executor: python/default
+    steps:
+      - run:
+          name: Start Docker Agent
+          command: |
+            docker-compose up
+          
+
+workflows:
+  main:
+    jobs:
+      - build-compose
+      - start-agent
