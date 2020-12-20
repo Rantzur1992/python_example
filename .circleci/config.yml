@@ -12,13 +12,13 @@ jobs:
       - run:
           name: Update And Install Dependancies
           command: |
-            export DEBIAN_FRONTEND=noninteractive
             apt-get -y update
             apt-get install -y curl wget git
             git clone https://github.com/Rantzur1992/python_example.git
       - run:
           name: Install Docker client
           command: |
+            export DEBIAN_FRONTEND=noninteractive
             apt-get install -y \
             apt-transport-https \
             ca-certificates \
@@ -26,7 +26,7 @@ jobs:
             gnupg-agent \
             software-properties-common
             curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-            apt-get install docker-ce docker-ce-cli containerd.io
+            apt-get install docker-ce docker-ce-cli
             service docker status
             
       - run:
