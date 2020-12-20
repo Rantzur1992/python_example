@@ -6,7 +6,7 @@ orbs:
 jobs:
   build-compose:
     docker:
-      - image: ubuntu
+      - image: ubuntu:18.04
     working_directory: testproject
     steps:
       - run:
