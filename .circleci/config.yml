@@ -15,6 +15,7 @@ jobs:
             apt-get -y update
             apt-get install -y curl wget git
             git clone https://github.com/Rantzur1992/python_example.git
+      - setup_remote_docker
       - run:
           name: Install Docker client
           command: |
