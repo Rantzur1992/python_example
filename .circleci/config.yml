@@ -6,6 +6,7 @@ orbs:
 jobs:
   build-compose:
     docker:
+      - image: circleci/cci-demo-docker-primary:0.0.2
       - image: ubuntu:18.04
     working_directory: testproject
     steps:
