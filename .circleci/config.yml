@@ -15,8 +15,6 @@ jobs:
             su -
             apt-get install sudo -y
             usermod -aG sudo root
-            sudo apt update
-            sudo apt upgrade
             sudo apt install curl
       - run:
           name: Install Docker client
