@@ -38,14 +38,13 @@ jobs:
           command: |
             cd python_example && ls -a
             set -x
-            docker-compose up -d
+            docker-compose up
             pip3 install testproject-python-sdk
 
       - run:
           name: Run Tests
           command: |
             sleep 20
-            wget http://localhost:8585
             cd python_example
             python3 python_example.py
 
