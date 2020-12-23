@@ -5,10 +5,8 @@ orbs:
 
 jobs:
   build-compose:
-  machine:
-      image: ubuntu-1804
-    docker:
-      - image: python
+    machine:
+      image: python
     working_directory: testproject
     steps:
       - run:
