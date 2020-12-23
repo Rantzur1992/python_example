@@ -5,6 +5,8 @@ orbs:
 
 jobs:
   build-compose:
+  machine:
+      image: ubuntu-1804
     docker:
       - image: python
     working_directory: testproject
@@ -16,7 +18,6 @@ jobs:
             apt-get install -y curl wget git
             git clone https://github.com/Rantzur1992/python_example.git
             python3 --version
-      - setup_remote_docker
       - run:
           name: Install Docker client
           command: |
@@ -38,7 +39,7 @@ jobs:
           command: |
             cd python_example && ls -a
             set -x
-            docker-compose up
+            docker-compose up -d
             pip3 install testproject-python-sdk
 
       - run:
