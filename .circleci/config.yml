@@ -6,7 +6,7 @@ orbs:
 jobs:
   build-compose:
     machine:
-      image: python
+      image: ubuntu-2004:202010-01
     working_directory: testproject
     steps:
       - run:
@@ -16,26 +16,11 @@ jobs:
             apt-get install -y curl wget git
             git clone https://github.com/Rantzur1992/python_example.git
             python3 --version
-      - run:
-          name: Install Docker client
-          command: |
-            set -x
-            VER="17.03.0-ce"
-            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
-            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-            mv /tmp/docker/* /usr/bin
-            
-      - run:
-          name: Install Docker Compose
-          command: |
-            curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            mv ~/docker-compose /usr/local/bin/docker-compose
           
       - run:
           name: Start Docker Agent
           command: |
-            cd python_example && ls -a
+            cd python_example
             set -x
             docker-compose up -d
             pip3 install testproject-python-sdk
