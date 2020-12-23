@@ -12,8 +12,8 @@ jobs:
       - run:
           name: Update And Install Dependancies
           command: |
-            apt-get -y update
-            apt-get install -y curl wget git
+            sudo apt-get -y update
+            sudo apt-get install -y curl wget git
             git clone https://github.com/Rantzur1992/python_example.git
             python3 --version
           
