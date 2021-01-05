@@ -1,13 +1,9 @@
-version: 2.1
-
-orbs:
-  python: circleci/python@0.2.1
-
+version: 2
 jobs:
-  build-compose-run-test:
+  build:
     machine:
       image: ubuntu-2004:202010-01
-    working_directory: ~/testproject
+    working_directory: ~/testproject-python-example
     steps:
       - checkout
       - python/install-deps
@@ -23,7 +19,7 @@ jobs:
             set -x
             docker-compose up -d
 
-       - run:
+      - run:
           name: Wait for agent to register
           command: |
               trap 'kill $(jobs -p)' EXIT
@@ -44,8 +40,3 @@ jobs:
           name: Run Tests
           command: |
             python3 python_example.py
-
-workflows:
-  main:
-    jobs:
-      - build-compose-run-test
