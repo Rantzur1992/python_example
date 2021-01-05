@@ -1,8 +1,4 @@
-version: 2.1
-
-orbs:
-  python: circleci/python@0.2.1
-
+version: 2
 jobs:
   build:
     machine:
@@ -10,12 +6,12 @@ jobs:
     working_directory: ~/testproject-python-example
     steps:
       - checkout
-      - python/install-deps
       - run:
           name: Update OS
           command: |
             sudo apt-get -y update
             python3 --version
+            pip3 install -r requirements.txt
           
       - run:
           name: Start Docker Agent
