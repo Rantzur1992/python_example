@@ -4,37 +4,48 @@ orbs:
   python: circleci/python@0.2.1
 
 jobs:
-  build-compose:
+  build-compose-run-test:
     machine:
       image: ubuntu-2004:202010-01
-    working_directory: testproject
+    working_directory: ~/testproject
     steps:
+      - checkout
+      - python/install-deps
       - run:
-          name: Update And Install Dependancies
+          name: Update OS
           command: |
             sudo apt-get -y update
-            sudo apt-get install -y curl wget git
-            git clone https://github.com/Rantzur1992/python_example.git
             python3 --version
           
       - run:
           name: Start Docker Agent
           command: |
-            cd python_example
             set -x
             docker-compose up -d
-            pip3 install testproject-python-sdk
+
+       - run:
+          name: Wait for agent to register
+          command: |
+              trap 'kill $(jobs -p)' EXIT
+              attempt_counter=0
+              max_attempts=45
+              mkdir -p build/reports/agent
+              docker-compose -f docker-compose.yml logs -f | tee build/reports/agent/log.txt&
+              until curl -s http://localhost:8585/api/status | jq '.registered' | grep true; do
+                if [ ${attempt_counter} -eq ${max_attempts} ]; then
+                  echo "Agent failed to register. Terminating..."
+                  exit 1
+                fi
+                attempt_counter=$(($attempt_counter+1))
+                sleep 1
+              done
 
       - run:
           name: Run Tests
           command: |
-            sleep 20
-            cd python_example
             python3 python_example.py
-
-
 
 workflows:
   main:
     jobs:
-      - build-compose
+      - build-compose-run-test
