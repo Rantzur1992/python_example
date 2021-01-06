@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install SDK
+          name: Install Requirements
           command:  pip3 install -r requirements.txt
 
       - run:
@@ -30,4 +30,4 @@ jobs:
 
       - run:
           name: Run Tests
-          command:  pytest
+          command:  pytest python_example.py
