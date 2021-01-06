@@ -1,1 +1,2 @@
 testproject-python-sdk
+pytest

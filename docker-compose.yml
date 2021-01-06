@@ -28,3 +28,4 @@ services:
       - /dev/shm:/dev/shm
     ports:
     - "5556:4444"                     # Expose Selenium on port 5556
+    

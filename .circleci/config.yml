@@ -3,25 +3,17 @@ jobs:
   build:
     machine:
       image: ubuntu-2004:202010-01
-    working_directory: ~/testproject-python-example
     steps:
       - checkout
       - run:
-          name: Update OS
-          command: |
-            sudo apt-get -y update
-            python3 --version
-            pip3 install -r requirements.txt
-          
-      - run:
-          name: Start Docker Agent
-          command: |
-            set -x
-            docker-compose up -d
+          name: Install SDK
+          command:  pip3 install -r requirements.txt
 
       - run:
-          name: Wait for agent to register
+          name: Start Agent and wait for agent to register
           command: |
+              set -x
+              docker-compose up -d
               trap 'kill $(jobs -p)' EXIT
               attempt_counter=0
               max_attempts=45
@@ -38,5 +30,4 @@ jobs:
 
       - run:
           name: Run Tests
-          command: |
-            python3 python_example.py
+          command:  pytest
