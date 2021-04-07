@@ -14,6 +14,6 @@ def test_simple_test():
 
     passed = driver.find_element_by_css_selector("#logout").is_displayed()
 
-    print("Test passed") if passed else print("Test failed")
+    print("Test passed") if passed else print("Test failed") 
 
     driver.quit()
